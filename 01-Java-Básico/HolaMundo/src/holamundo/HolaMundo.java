@@ -1,10 +1,10 @@
 
-package javaapplication2;
+package holamundo;
 
 
-public class HelloWorld {
+public class HolaMundo {
 
-
+    
     public static void main(String[] args) {
         
         //System.out.println("Hola mundo");
