@@ -12,12 +12,12 @@ public class VariablesYOperadores {
         Scanner teclado = new Scanner(System.in);
         
         System.out.println("Ingresa un valor para la base: ");
-        double base = teclado.nextDouble();
+        float base = teclado.nextFloat();
         
         System.out.println("Ingresa un valor para la altura: ");
-        double altura = teclado.nextDouble();
+        float altura = teclado.nextFloat();
         
-        double area = (base*altura)/2;
+        float area = (base*altura)/2;
         
         System.out.println("El area de un triangulo de base " + base + " y altura " + altura + " es: " + area);
         
