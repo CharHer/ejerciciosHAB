@@ -1,30 +1,33 @@
 
 package logica;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Empleado {
+public class Empleado implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)       
     int id;
     String nombre;
     String apellido;
+    String cargo;
     double salario;
-    private Date fecha_ingreso; //No tengo idea de como hacerlo
+    LocalDate fecha_ingreso;
 
     public Empleado() {
     }
 
-    public Empleado(int id, String nombre, String apellido, double salario, Date fecha_ingreso) {
+    public Empleado(int id, String nombre, String apellido, String cargo, double salario, LocalDate fecha_ingreso) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.cargo = cargo;
         this.salario = salario;
         this.fecha_ingreso = fecha_ingreso;
     }
@@ -53,6 +56,14 @@ public class Empleado {
         this.apellido = apellido;
     }
 
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
     public double getSalario() {
         return salario;
     }
@@ -61,14 +72,19 @@ public class Empleado {
         this.salario = salario;
     }
 
-    public Date getFecha_ingreso() {
+    public LocalDate getFecha_ingreso() {
         return fecha_ingreso;
     }
 
-    public void setFecha_ingreso(Date fecha_ingreso) {
+    public void setFecha_ingreso(LocalDate fecha_ingreso) {
         this.fecha_ingreso = fecha_ingreso;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Empleado {" + "Id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", cargo=" + cargo + 
+                ", salario= $" + salario + ", fecha_ingreso=" + fecha_ingreso + '}';
+    }
+
     
 }
