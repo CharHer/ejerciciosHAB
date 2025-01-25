@@ -2,7 +2,6 @@
 package logica;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,20 +24,23 @@ public class Pelicula implements Serializable {
     @JoinColumn(name = "sala_id")
     private Sala sala;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "horario_id")
     private Horario Horario;
 
     public Pelicula() {
     }
 
-    public Pelicula(Long id, String titulo, String director, int duracion, Horario Horario) {
+    public Pelicula(Long id, String titulo, String director, int duracion, Sala sala, Horario Horario) {
         this.id = id;
         this.titulo = titulo;
         this.director = director;
         this.duracion = duracion;
+        this.sala = sala;
         this.Horario = Horario;
     }
+
+   
 
     public Long getId() {
         return id;
@@ -78,6 +80,22 @@ public class Pelicula implements Serializable {
 
     public void setUnHorario(Horario unHorario) {
         this.Horario = unHorario;
+    }
+
+    public Sala getSala() {
+        return sala;
+    }
+
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
+    public Horario getHorario() {
+        return Horario;
+    }
+
+    public void setHorario(Horario Horario) {
+        this.Horario = Horario;
     }
     
     

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/PersonaJSP/pom.xml" />
+        <option value="$PROJECT_DIR$/testUnitarios/pom.xml" />
+        <option value="$PROJECT_DIR$/EjemploOneToOne/pom.xml" />
+        <option value="$PROJECT_DIR$/EjemploOneToMany/pom.xml" />
+        <option value="$PROJECT_DIR$/HolaMuntoWebTest/pom.xml" />
+        <option value="$PROJECT_DIR$/EjercicioOneToManyTorneo/pom.xml" />
+        <option value="$PROJECT_DIR$/EjercicioExceptionsCrudTienda/pom.xml" />
+        <option value="$PROJECT_DIR$/EjercicioOficinasYDirectoresOneToOne/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

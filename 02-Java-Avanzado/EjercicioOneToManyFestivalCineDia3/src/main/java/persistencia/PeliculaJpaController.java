@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import logica.Pelicula;
+import logica.Sala;
 import persistencia.exceptions.NonexistentEntityException;
 
 
@@ -34,7 +35,16 @@ public class PeliculaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Sala sala = pelicula.getSala();
+            if (sala != null) {
+                sala = em.getReference(sala.getClass(), sala.getId());
+                pelicula.setSala(sala);
+            }
             em.persist(pelicula);
+            if (sala != null) {
+                sala.getListaPeliculas().add(pelicula);
+                sala = em.merge(sala);
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -48,7 +58,22 @@ public class PeliculaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Pelicula persistentPelicula = em.find(Pelicula.class, pelicula.getId());
+            Sala salaOld = persistentPelicula.getSala();
+            Sala salaNew = pelicula.getSala();
+            if (salaNew != null) {
+                salaNew = em.getReference(salaNew.getClass(), salaNew.getId());
+                pelicula.setSala(salaNew);
+            }
             pelicula = em.merge(pelicula);
+            if (salaOld != null && !salaOld.equals(salaNew)) {
+                salaOld.getListaPeliculas().remove(pelicula);
+                salaOld = em.merge(salaOld);
+            }
+            if (salaNew != null && !salaNew.equals(salaOld)) {
+                salaNew.getListaPeliculas().add(pelicula);
+                salaNew = em.merge(salaNew);
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -77,6 +102,11 @@ public class PeliculaJpaController implements Serializable {
                 pelicula.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The pelicula with id " + id + " no longer exists.", enfe);
+            }
+            Sala sala = pelicula.getSala();
+            if (sala != null) {
+                sala.getListaPeliculas().remove(pelicula);
+                sala = em.merge(sala);
             }
             em.remove(pelicula);
             em.getTransaction().commit();

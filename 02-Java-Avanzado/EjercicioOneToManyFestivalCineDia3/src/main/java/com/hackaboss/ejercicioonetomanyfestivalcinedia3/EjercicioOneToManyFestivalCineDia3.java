@@ -71,18 +71,22 @@ public class EjercicioOneToManyFestivalCineDia3 {
         pelicula1.setDirector("Joel Crawford");
         pelicula1.setDuracion(132);
         pelicula1.setUnHorario(horario5);
+        pelicula1.setSala(sala2);
+        
         
         Pelicula pelicula2 = new Pelicula();
         pelicula2.setTitulo("Titanes del Pacifico");
         pelicula2.setDirector("Guillermo del Toro");
         pelicula2.setDuracion(140);
         pelicula2.setUnHorario(horario3);
+        pelicula2.setSala(sala2);
         
         Pelicula pelicula3 = new Pelicula();
         pelicula3.setTitulo("Los increibles");
         pelicula3.setDirector("Brad Bird");
         pelicula3.setDuracion(125);
         pelicula3.setUnHorario(horario1);
+        pelicula3.setSala(sala1);
         
         controlPersis.crearPelicula(pelicula1);
         controlPersis.crearPelicula(pelicula2);
